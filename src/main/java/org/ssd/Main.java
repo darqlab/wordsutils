@@ -91,7 +91,13 @@ public class Main {
         }
 
 
-          for(Result r: results){
+        Result[] rs = results.toArray(new Result[0]);
+        Arrays.sort(rs, Comparator.comparing(Result::getWord_count).reversed());
+
+
+
+
+          for(Result r: rs){
               System.out.println(r.getValue_() + " " + r.getWord_count());
 
           }
