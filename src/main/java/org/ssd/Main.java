@@ -8,6 +8,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.*;
 
@@ -103,12 +104,22 @@ public class Main {
           for(Result r: rs){
 
               Row row = sheet.createRow(rownum++);
-              Cell cell = row.createCell(0);
-              cell.setCellValue(r.getValue_() );
-              System.out.println(r.getValue_() + " " + r.getWord_count());
+              Cell cell1 = row.createCell(0);
+              cell1.setCellValue(r.getValue_() );
+              Cell cell2 = row.createCell(1);
+              cell2.setCellValue(r.getWord_count() );
+             // System.out.println(r.getValue_() + " " + r.getWord_count());
 
           }
-
+        try {
+            FileOutputStream out = new FileOutputStream(new File("/home/dennis/lab/wordsutils/result.xlsx"));
+            workbook.write(out);
+            out.close();
+            System.out.println("result.xlsx written successfully on disk.");
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
 
     }
 }
