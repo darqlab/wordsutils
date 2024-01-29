@@ -80,7 +80,7 @@ public class Main {
                 wordCount++;
               //  System.out.println("y " + wordCount);
             }else{
-                System.out.println(ss[c-1] + " " +  wordCount);
+               // System.out.println(ss[c-1] + " " +  wordCount);
                 results.add(new Result(c,ss[c-1],wordCount));
                 a=ss[c];
                 wordCount=1;
@@ -90,6 +90,11 @@ public class Main {
 
         }
 
+
+          for(Result r: results){
+              System.out.println(r.getValue_() + " " + r.getWord_count());
+
+          }
 
 
     }
