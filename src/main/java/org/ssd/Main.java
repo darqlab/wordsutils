@@ -94,7 +94,15 @@ public class Main {
         Result[] rs = results.toArray(new Result[0]);
         Arrays.sort(rs, Comparator.comparing(Result::getWord_count).reversed());
 
+
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        int rownum = 0;
+//Create a blank sheet
+        Sheet sheet = workbook.createSheet("Employee Data");
+
           for(Result r: rs){
+
+              Row row = sheet.createRow(rownum++);
               System.out.println(r.getValue_() + " " + r.getWord_count());
 
           }
