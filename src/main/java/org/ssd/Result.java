@@ -14,11 +14,11 @@ public class Result {
     private int id_;
     private String value_;
 
-    private int count_;
+    private int word_count;
 
     public Result(int id_, String value_, int count_) {
         this.id_ = id_;
         this.value_ = value_;
-        this.count_ = count_;
+        this.word_count = count_;
     }
 }
