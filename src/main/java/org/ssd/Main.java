@@ -1,0 +1,98 @@
+package org.ssd;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.*;
+
+import static java.lang.String.valueOf;
+
+
+//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+public class Main {
+    public static void main(String[] args) {
+
+        List<Word_> raw_words = new ArrayList<>();
+        List<String> words = new ArrayList<>();
+        List<String> toSort = new ArrayList<>();
+
+        try {
+            FileInputStream file = new FileInputStream("/home/dennis/lab/Wordutils/queryFiles.xlsx");
+            Workbook workbook = new XSSFWorkbook(file);
+            Sheet sheet = workbook.getSheetAt(0);
+
+            Map<Integer, List<String>> data = new HashMap<>();
+
+
+            int i = 0;
+            for (Row row : sheet) {
+                data.put(i, new ArrayList<String>());
+                for (Cell cell : row) {
+                    switch (cell.getCellType()) {
+                        case STRING, NUMERIC:
+                           // System.out.println(cell.getRichStringCellValue().getString());
+                         //   word = new Word_(i,cell.getRichStringCellValue().getString());
+                          //  word.(new Word_(i,cell.getRichStringCellValue().getString()));
+                            String[] s = new String[]{};
+
+                            s = cell.getRichStringCellValue().getString().split(" ");
+                            for(String st: s){
+                                //System.out.println(st);
+                                toSort.add(st);
+                            }
+                           // raw_words.add(new Word_(i,cell.getRichStringCellValue().getString()));
+
+                           // data.put(1,cell.getRichStringCellValue().getString());
+                           // data.get(valueOf(i)).add(cell.getRichStringCellValue().getString());
+                             break;
+                        case BOOLEAN:
+                             break;
+
+                        default: data.get(valueOf(i)).add(" ");
+                    }
+                }
+                i++;
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        String[] ss = toSort.toArray(new String[0]);
+        Arrays.sort(ss);
+
+
+        int c=0;
+        String a=ss[c];
+        int wordCount=0;
+       // c++;
+       // for(String w : ss){
+          for(c = 1 ; c<ss.length; c++){
+
+            if(a.equals(ss[c])) {
+
+                wordCount++;
+              //  System.out.println("y " + wordCount);
+            }else{
+                System.out.println(ss[c-1] + " " +  wordCount);
+                a=ss[c];
+                wordCount=1;
+
+            }
+
+
+        }
+
+       // System.out.println(toSort.size());
+
+
+
+
+    }
+}
