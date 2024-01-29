@@ -24,7 +24,7 @@ public class Main {
         List<String> toSort = new ArrayList<>();
 
         try {
-            FileInputStream file = new FileInputStream("/home/dennis/lab/Wordutils/queryFiles.xlsx");
+            FileInputStream file = new FileInputStream("/home/dennis/lab/wordsutils/queryFiles.xlsx");///home/dennis/lab/wordsutils/queryFiles.xlsx
             Workbook workbook = new XSSFWorkbook(file);
             Sheet sheet = workbook.getSheetAt(0);
 
@@ -43,10 +43,7 @@ public class Main {
                             String[] s = new String[]{};
 
                             s = cell.getRichStringCellValue().getString().split(" ");
-                            for(String st: s){
-                                //System.out.println(st);
-                                toSort.add(st);
-                            }
+                            Collections.addAll(toSort, s);
                            // raw_words.add(new Word_(i,cell.getRichStringCellValue().getString()));
 
                            // data.put(1,cell.getRichStringCellValue().getString());
@@ -71,6 +68,9 @@ public class Main {
         int c=0;
         String a=ss[c];
         int wordCount=0;
+        List<Result> results = new ArrayList<>();
+
+
        // c++;
        // for(String w : ss){
           for(c = 1 ; c<ss.length; c++){
@@ -81,6 +81,7 @@ public class Main {
               //  System.out.println("y " + wordCount);
             }else{
                 System.out.println(ss[c-1] + " " +  wordCount);
+                results.add(new Result(c,ss[c-1],wordCount));
                 a=ss[c];
                 wordCount=1;
 
@@ -88,9 +89,6 @@ public class Main {
 
 
         }
-
-       // System.out.println(toSort.size());
-
 
 
 
