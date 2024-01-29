@@ -103,6 +103,8 @@ public class Main {
           for(Result r: rs){
 
               Row row = sheet.createRow(rownum++);
+              Cell cell = row.createCell(0);
+              cell.setCellValue(r.getValue_() );
               System.out.println(r.getValue_() + " " + r.getWord_count());
 
           }
